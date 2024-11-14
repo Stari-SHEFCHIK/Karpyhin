@@ -48,7 +48,10 @@
     </table>
     <button type="button" id="button_avg" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Подсчитать средний балл</button>
 
-    <!-- Modal -->
+    <!-- Новая кнопка для запуска функции transformEmployees -->
+    <button type="button" id="button_transform" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#transformModal">Преобразовать сотрудников</button>
+
+    <!-- Modal для отображения среднего балла -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -57,6 +60,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="average">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal для отображения сотрудников -->
+    <div class="modal fade" id="transformModal" tabindex="-1" aria-labelledby="transformModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transformModalLabel">Сотрудники:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="employeeList">
                     ...
                 </div>
                 <div class="modal-footer">
@@ -135,7 +156,7 @@
             });
         }
 
-        // Пример использования функции
+        // Пример массива сотрудников
         var employees = [
             {name: 'Иван', age: 23},
             {name: 'Петр', age: 30},
@@ -143,11 +164,13 @@
             {name: 'Нафаня', age: 25}
         ];
 
-        var result = transformEmployees(employees);
-        console.log(result);
+        // Обработчик клика по кнопке преобразования
+        $("#button_transform").click(function() {
+            var result = transformEmployees(employees);
+            $("#employeeList").html(result.join("<br>")); // Вывод результата в модальное окно
+        });
     });
 </script>
 
 </body>
 </html>
- 
